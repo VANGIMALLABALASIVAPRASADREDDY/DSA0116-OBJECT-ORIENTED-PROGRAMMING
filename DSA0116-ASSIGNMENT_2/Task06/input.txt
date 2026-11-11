@@ -1,0 +1,10 @@
+Train Journey Test Timetable:
+1. Standard Test: Departure 09:45, Arrival 13:10
+   Expected: 205 min difference, arrival earlier than departure = false
+2. Boundary Check 1: 10:30 and 10:30 (identical times)
+   Expected: 0 min difference, earlier = false
+3. Boundary Check 2: 11:45 and 12:15 (either side of noon)
+   Expected: 30 min difference, 11:45 earlier = true, 12:15 earlier = false
+Benchmark Scale: 10,000,000 evaluations
+Optimisation Levels Tested: -O0 vs -O2
+
