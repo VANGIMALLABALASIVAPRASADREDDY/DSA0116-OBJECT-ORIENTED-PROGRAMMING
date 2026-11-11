@@ -1,0 +1,8 @@
+Courier Charge Test Configurations:
+Call 1: Weight = 2 (int, grams)
+Call 2: Weight = 2.0f (float, kilograms)
+Call 3: Weight = 5.5 (double, kilograms)
+Call 4: Weight = 500 (int, grams), Express = true
+Call 5: Weight = 12.5 (double, kilograms), Express = false, Insured = true
+Call 6: Parcel Object { trackingId: "PKG-901", weightKg: 4.2, express: true, insured: true }
+

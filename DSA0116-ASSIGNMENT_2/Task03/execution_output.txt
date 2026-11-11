@@ -1,0 +1,50 @@
+$ g++ -std=c++17 -Wall -Wextra ambiguity_demo.cpp -o ambiguity_demo.exe
+temp_ambig.cpp: In function 'int main()':
+temp_ambig.cpp:30:25: error: call of overloaded 'charge(double)' is ambiguous
+   30 |     double cost = charge(10.5); (void)cost;
+      |                   ~~~~~~^~~~~~
+temp_ambig.cpp:5:8: note: candidate: 'double charge(double)'
+    5 | double charge(double weight)
+      |        ^~~~~~
+temp_ambig.cpp:17:8: note: candidate: 'double charge(double, bool, bool)'
+   17 | double charge(double weight, bool express = false, bool insured = false)
+      |        ^~~~~~
+
+$ g++ -std=c++17 -Wall -Wextra courier_calculator.cpp -o courier_calculator.exe
+$ ./courier_calculator.exe
+========================================================
+   Q3: REDESIGNED COURIER CHARGE CALCULATOR             
+========================================================
+
+Test Call 1: charge(2)
+  Prediction: Selects charge(int, bool, bool) by EXACT MATCH
+  [SELECTED: charge(int, bool, bool)] -> weight: 2 g (0.00 kg), express: false, insured: false
+  Charge: 0.10 INR
+
+Test Call 2: charge(2.0f)
+  Prediction: Selects charge(double, bool, bool) by FLOATING-POINT PROMOTION (float -> double)
+  [SELECTED: charge(double, bool, bool)] -> weight: 2.00 kg, express: false, insured: false
+  Charge: 100.00 INR
+
+Test Call 3: charge(5.5)
+  Prediction: Selects charge(double, bool, bool) by EXACT MATCH with double
+  [SELECTED: charge(double, bool, bool)] -> weight: 5.50 kg, express: false, insured: false
+  Charge: 275.00 INR
+
+Test Call 4: charge(500, true)
+  Prediction: Selects charge(int, bool, bool) by EXACT MATCH (default insured=false)
+  [SELECTED: charge(int, bool, bool)] -> weight: 500 g (0.50 kg), express: true, insured: false
+  Charge: 125.00 INR
+
+Test Call 5: charge(12.5, false, true)
+  Prediction: Selects charge(double, bool, bool) with all arguments provided
+  [SELECTED: charge(double, bool, bool)] -> weight: 12.50 kg, express: false, insured: true
+  Charge: 675.00 INR
+
+Test Call 6: charge(Parcel{"PKG-901", 4.2, true, true})
+  Prediction: Selects charge(const Parcel&) by EXACT MATCH with user-defined type
+  [SELECTED: charge(const Parcel&)] -> Parcel ID: PKG-901, weight: 4.20 kg, express: true, insured: true
+  [SELECTED: charge(double, bool, bool)] -> weight: 4.20 kg, express: true, insured: true
+  Charge: 360.00 INR
+
+All 6 calls resolved unambiguously and executed successfully!
