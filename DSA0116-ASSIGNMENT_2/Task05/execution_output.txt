@@ -1,0 +1,44 @@
+$ g++ -std=c++17 -Wall -Wextra token_predict.cpp -o token_predict.exe
+$ ./token_predict.exe
+101 103 104 4
+
+$ g++ -std=c++17 -Wall -Wextra bus_ticket_complete.cpp -o bus_ticket_complete.exe
+$ ./bus_ticket_complete.exe
+Asha: Seat 1
+Bala: Seat 2
+Chitra: Seat 3
+Dev: Waiting
+Issued: 3
+
+$ g++ -std=c++17 -Wall -Wextra multi_run_simulation.cpp -o multi_run_simulation.exe
+$ ./multi_run_simulation.exe
+========================================================
+  Q5: MULTI-RUN FUNCTION CALL & MULTI-BUS SIMULATION     
+========================================================
+
+PART 1: Calling issueBatch() TWICE:
+Expectation: Static count persists across function returns.
+First call fills seats 1 and 2. Second call fills seat 3 and places next passenger on waiting list.
+
+--> Function issueBatch(1) called:
+    Passenger_1A: Seat 1
+    Passenger_1B: Seat 2
+    Current Static Issued Count: 2
+
+--> Function issueBatch(2) called:
+    Passenger_2A: Seat 3
+    Passenger_2B: Waiting
+    Current Static Issued Count: 3
+
+PART 2: Multi-Bus Capability (Alternative TicketOffice Object):
+Morning Bus Passengers (Capacity 2):
+    [Route 101 - Morning] Alice: Seat 1
+    [Route 101 - Morning] Bob: Seat 2
+    [Route 101 - Morning] Charlie: Waiting
+  Total Issued: 2
+
+Evening Bus Passengers (Capacity 2):
+    [Route 202 - Evening] David: Seat 1
+    [Route 202 - Evening] Emma: Seat 2
+  Total Issued: 2
+

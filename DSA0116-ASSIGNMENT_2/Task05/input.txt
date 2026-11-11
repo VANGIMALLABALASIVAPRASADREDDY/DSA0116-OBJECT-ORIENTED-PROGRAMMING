@@ -1,0 +1,12 @@
+Bus Ticket Booking Manifest:
+Bus Capacity: 3 Seats
+Passengers to Book:
+1. Asha
+2. Bala
+3. Chitra
+4. Dev (Exceeds Capacity -> Waiting List)
+
+Function Batch Test:
+Batch 1: Passenger_1A, Passenger_1B
+Batch 2: Passenger_2A, Passenger_2B (Exceeds Capacity -> Waiting List)
+
