@@ -1,0 +1,112 @@
+$ g++ -std=c++17 -Wall -Wextra savings_account.cpp -o savings_account.exe
+$ ./savings_account.exe
+========================================================
+  Q4: SAVINGS ACCOUNT MINI-STATEMENT (SHIFTING ARRAY)   
+========================================================
+
+--- Executing First 10 Transactions ---
+Deposited: 1000.00 | Current Balance: 6000.00
+Withdrew : 500.00 | Current Balance: 5500.00
+Deposited: 2500.00 | Current Balance: 8000.00
+Withdrew : 1200.00 | Current Balance: 6800.00
+Deposited: 800.00 | Current Balance: 7600.00
+Withdrew : 300.00 | Current Balance: 7300.00
+Deposited: 1500.00 | Current Balance: 8800.00
+Withdrew : 700.00 | Current Balance: 8100.00
+Deposited: 2000.00 | Current Balance: 10100.00
+Withdrew : 450.00 | Current Balance: 9650.00
+
+Mini-statement after 10 transactions (Buffer Full):
+
+========================================
+         ATM MINI-STATEMENT             
+========================================
+Account Number: 100234567890
+Current Balance: 9650.00 INR
+Last 10 Transaction(s):
+----------------------------------------
+ #  | Type       | Amount (INR)
+----+------------+----------------------
+ 1 | DEPOSIT    |    1000.00
+ 2 | WITHDRAWAL |     500.00
+ 3 | DEPOSIT    |    2500.00
+ 4 | WITHDRAWAL |    1200.00
+ 5 | DEPOSIT    |     800.00
+ 6 | WITHDRAWAL |     300.00
+ 7 | DEPOSIT    |    1500.00
+ 8 | WITHDRAWAL |     700.00
+ 9 | DEPOSIT    |    2000.00
+10 | WITHDRAWAL |     450.00
+========================================
+
+--- Executing 11th, 12th, and 13th Transactions (Triggering Shift) ---
+-> 11th Transaction arrives: oldest transaction (+1000.0) is discarded.
+Deposited: 3500.00 | Current Balance: 13150.00
+-> 12th Transaction arrives: oldest transaction (-500.0) is discarded.
+Withdrew : 900.00 | Current Balance: 12250.00
+-> 13th Transaction arrives: oldest transaction (+2500.0) is discarded.
+Deposited: 4000.00 | Current Balance: 16250.00
+
+Mini-statement after 13 total transactions (Oldest 3 Discarded):
+
+========================================
+         ATM MINI-STATEMENT             
+========================================
+Account Number: 100234567890
+Current Balance: 16250.00 INR
+Last 10 Transaction(s):
+----------------------------------------
+ #  | Type       | Amount (INR)
+----+------------+----------------------
+ 1 | WITHDRAWAL |    1200.00
+ 2 | DEPOSIT    |     800.00
+ 3 | WITHDRAWAL |     300.00
+ 4 | DEPOSIT    |    1500.00
+ 5 | WITHDRAWAL |     700.00
+ 6 | DEPOSIT    |    2000.00
+ 7 | WITHDRAWAL |     450.00
+ 8 | DEPOSIT    |    3500.00
+ 9 | WITHDRAWAL |     900.00
+10 | DEPOSIT    |    4000.00
+========================================
+
+
+$ g++ -std=c++17 -Wall -Wextra circular_buffer_account.cpp -o circular_buffer_account.exe
+$ ./circular_buffer_account.exe
+========================================================
+  Q4: CIRCULAR BUFFER SAVINGS ACCOUNT DEMONSTRATION     
+========================================================
+
+
+--- CIRCULAR BUFFER MINI-STATEMENT (Account: 987654321012) ---
+Balance: 15500.00 INR
+Displaying last 10 transactions (O(1) insertion architecture):
+  [1] + 100.00 INR (physical index: 0)
+  [2] + 200.00 INR (physical index: 1)
+  [3] + 300.00 INR (physical index: 2)
+  [4] + 400.00 INR (physical index: 3)
+  [5] + 500.00 INR (physical index: 4)
+  [6] + 600.00 INR (physical index: 5)
+  [7] + 700.00 INR (physical index: 6)
+  [8] + 800.00 INR (physical index: 7)
+  [9] + 900.00 INR (physical index: 8)
+  [10] + 1000.00 INR (physical index: 9)
+--------------------------------------------------------------------
+
+Adding 11th and 12th transactions to Circular Buffer (Zero Shifting Cost):
+
+--- CIRCULAR BUFFER MINI-STATEMENT (Account: 987654321012) ---
+Balance: 14389.00 INR
+Displaying last 10 transactions (O(1) insertion architecture):
+  [1] + 300.00 INR (physical index: 2)
+  [2] + 400.00 INR (physical index: 3)
+  [3] + 500.00 INR (physical index: 4)
+  [4] + 600.00 INR (physical index: 5)
+  [5] + 700.00 INR (physical index: 6)
+  [6] + 800.00 INR (physical index: 7)
+  [7] + 900.00 INR (physical index: 8)
+  [8] + 1000.00 INR (physical index: 9)
+  [9] + 1111.00 INR (physical index: 0)
+  [10] - 2222.00 INR (physical index: 1)
+--------------------------------------------------------------------
+

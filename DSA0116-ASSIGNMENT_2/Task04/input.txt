@@ -1,0 +1,20 @@
+Savings Account Initial Data:
+Account Number: 100234567890
+Opening Balance: 5000.00 INR
+Buffer Size: 10 Transactions
+
+Transaction Sequence:
+1. Deposit: 1000.00
+2. Withdraw: 500.00
+3. Deposit: 2500.00
+4. Withdraw: 1200.00
+5. Deposit: 800.00
+6. Withdraw: 300.00
+7. Deposit: 1500.00
+8. Withdraw: 700.00
+9. Deposit: 2000.00
+10. Withdraw: 450.00
+11. Deposit: 3500.00 (triggers shift / circular overwrite)
+12. Withdraw: 900.00 (triggers shift / circular overwrite)
+13. Deposit: 4000.00 (triggers shift / circular overwrite)
+
