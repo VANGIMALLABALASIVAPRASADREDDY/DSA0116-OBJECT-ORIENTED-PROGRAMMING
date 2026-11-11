@@ -1,0 +1,35 @@
+$ g++ -std=c++17 -Wall -Wextra complete_the_code.cpp -o complete_the_code.exe
+$ ./complete_the_code.exe
+after call by value : 45000
+after call by reference: 40500
+
+$ g++ -std=c++17 -Wall -Wextra predict_output.cpp -o predict_output.exe
+$ ./predict_output.exe
+1 12 13
+1 100
+16 13 6 
+
+$ g++ -std=c++17 -Wall -Wextra concession_updater.cpp -o concession_updater.exe
+$ ./concession_updater.exe
+====================================================
+  HOSTEL FEE CONCESSION UPDATER (Q1 DEMONSTRATION)  
+====================================================
+
+Initial Base Hostel Fee: 45000 INR
+
+--- 1. Applying Merit Concession (10%) by VALUE ---
+Predicted fee after call: 45000 (No change to caller's fee)
+  [Inside applyConcessionByValue] fee calculated = 40500
+Actual fee stored for student: 45000 INR (VERIFIED: UNCHANGED)
+
+--- 2. Applying Sports Concession (15%) by REFERENCE ---
+Predicted fee after call: 38250 (45000 - 15% = 38250)
+  [Inside applyConcessionByReference] fee updated = 38250
+Actual fee stored for student: 38250 INR (VERIFIED: UPDATED)
+
+--- 3. Applying Single Parent Concession (25%) by POINTER ---
+Predicted fee after call: 28688 (38250 - 25% = 28687.5 -> 28688)
+  [Inside applyConcessionByPointer] fee updated = 28688
+Actual fee stored for student: 28688 INR (VERIFIED: UPDATED)
+
+Final Fee Stored: 28688 INR

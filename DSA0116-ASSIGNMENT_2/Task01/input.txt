@@ -1,0 +1,6 @@
+Base Fee: 45000
+Concessions:
+1. Merit: 10%
+2. Sports: 15%
+3. Single Parent: 25%
+
