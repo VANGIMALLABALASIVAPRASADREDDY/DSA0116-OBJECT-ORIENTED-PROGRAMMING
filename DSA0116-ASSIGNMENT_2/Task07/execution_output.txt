@@ -1,0 +1,58 @@
+$ g++ -std=c++17 -Wall -Wextra original_shifting_buffer.cpp -o original_shifting_buffer.exe
+$ ./original_shifting_buffer.exe
+Original Shifting Buffer test finished. Balance: 13000
+
+$ g++ -std=c++17 -Wall -Wextra redesigned_circular_buffer.cpp -o redesigned_circular_buffer.exe
+$ ./redesigned_circular_buffer.exe
+Redesigned Circular Buffer test finished. Balance: 13000
+Mini-Statement (Last 10 entries):
+  #1: 600 INR
+  #2: 700 INR
+  #3: 800 INR
+  #4: 900 INR
+  #5: 1000 INR
+  #6: 1100 INR
+  #7: 1200 INR
+  #8: 1300 INR
+  #9: 1400 INR
+  #10: 1500 INR
+
+$ g++ -std=c++17 -O2 -Wall -Wextra benchmark_comparison.cpp -o benchmark_comparison.exe
+$ ./benchmark_comparison.exe
+========================================================
+  DAY-4 DESIGN CHALLENGE: BENCHMARK COMPARISON          
+  N = 200000 Transactions per test                
+========================================================
+
+--------------------------------------------------------
+Testing Buffer Capacity k = 10 (200000 transactions)
+--------------------------------------------------------
+  Original (Shifting Array) : 1.717 ms (chk: 6901545)
+  Redesigned (Circular Ring): 1.039 ms (chk: 6901545)
+  Speedup Factor            : 1.653x
+  Time Reduction            : 39.487 %
+
+--------------------------------------------------------
+Testing Buffer Capacity k = 50 (200000 transactions)
+--------------------------------------------------------
+  Original (Shifting Array) : 3.291 ms (chk: 6902725)
+  Redesigned (Circular Ring): 1.068 ms (chk: 6902725)
+  Speedup Factor            : 3.081x
+  Time Reduction            : 67.548 %
+
+--------------------------------------------------------
+Testing Buffer Capacity k = 100 (200000 transactions)
+--------------------------------------------------------
+  Original (Shifting Array) : 3.341 ms (chk: 6904450)
+  Redesigned (Circular Ring): 0.734 ms (chk: 6904450)
+  Speedup Factor            : 4.552x
+  Time Reduction            : 78.031 %
+
+--------------------------------------------------------
+Testing Buffer Capacity k = 200 (200000 transactions)
+--------------------------------------------------------
+  Original (Shifting Array) : 7.109 ms (chk: 6907900)
+  Redesigned (Circular Ring): 1.105 ms (chk: 6907900)
+  Speedup Factor            : 6.433x
+  Time Reduction            : 84.456 %
+
