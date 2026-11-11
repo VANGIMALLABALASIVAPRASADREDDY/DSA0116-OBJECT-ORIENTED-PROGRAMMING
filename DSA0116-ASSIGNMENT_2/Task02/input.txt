@@ -1,0 +1,7 @@
+Class Marks Register:
+Total Students: 5
+Initial Marks: [78, 85, 92, 64, 89]
+Operation 1: Moderation (+2) applied to highest mark
+Operation 2: Direct assignment (= 99) applied to highest mark
+Operation 3: Vector growth reallocation test (Initial Capacity: 2 -> Exceeded to 5)
+

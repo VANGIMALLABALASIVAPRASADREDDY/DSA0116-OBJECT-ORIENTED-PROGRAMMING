@@ -1,0 +1,71 @@
+$ g++ -std=c++17 -Wall -Wextra marks_register.cpp -o marks_register.exe
+$ ./marks_register.exe
+========================================================
+  Q2: EXAMINATION MARKS REGISTER - RETURN BY REFERENCE  
+========================================================
+
+Initial Marks Register      : [ 78, 85, 92, 64, 89 ]
+
+Current Highest Mark (via Read-Only): 92
+
+--> Applying Moderation (+2) directly to returned reference:
+    Code executed: getHighestMark(marks, CLASS_SIZE) += 2;
+After Moderation (+2)       : [ 78, 85, 94, 64, 89 ]
+
+--> Using function call on the LEFT of assignment (=):
+    Code executed: getHighestMark(marks, CLASS_SIZE) = 99;
+After Direct Assignment (= 99): [ 78, 85, 99, 64, 89 ]
+
+--> Testing Return by Copy:
+    Modified copy to 50, but marks in array remain: Current Array               : [ 78, 85, 99, 64, 89 ]
+
+Summary: Returning a reference creates a valid lvalue, allowing
+direct mutation of the target container element.
+
+$ g++ -std=c++17 -Wall -Wextra dangling_reference_demo.cpp -o dangling_reference_demo.exe
+dangling_reference_demo.cpp: In function 'int& returnLocalVariableReference()':
+dangling_reference_demo.cpp:10:12: warning: reference to local variable 'localMark' returned [-Wreturn-local-addr]
+   10 |     return localMark;   // DANGER: Stack frame is deallocated upon function return!
+      |            ^~~~~~~~~
+dangling_reference_demo.cpp:9:9: note: declared here
+    9 |     int localMark = 100; // Local variable allocated on this function's stack frame
+      |         ^~~~~~~~~
+$ ./dangling_reference_demo.exe
+========================================================
+  Q2: DEMONSTRATING DANGER OF RETURNING LOCAL REFERENCE 
+========================================================
+
+Explanation of Compiler Warning [-Wreturn-local-addr]:
+1. 'localMark' is created on the activation record (stack frame).
+2. When returnLocalVariableReference() returns, the stack frame is deallocated.
+3. Returning a reference creates a DANGLING REFERENCE to dead memory.
+4. Any dereference in modern C++ (GCC 13) is undefined behaviour and
+   causes invalid memory reads, corruption, or trap halts.
+5. Compile-time evidence: GCC emits warning: reference to local variable returned!
+
+$ g++ -std=c++17 -Wall -Wextra vector_reallocation_demo.cpp -o vector_reallocation_demo.exe
+$ ./vector_reallocation_demo.exe
+========================================================
+  Q2 CHANGED CONDITION: STD::VECTOR REALLOCATION DEMO   
+========================================================
+
+Initial Vector State:
+  Size: 2, Capacity: 2
+  Address of marks[0]: 0x222ab0127d0
+  Address of marks[1]: 0x222ab0127d4
+
+Captured reference 'highestRef' to marks[1]: 92
+  Memory location stored in reference: 0x222ab0127d4
+
+--> Adding 10 elements to trigger vector memory relocation...
+New Vector State after growth:
+  Size: 12, New Capacity: 16
+  New Address of marks[0]: 0x222ab012460
+  New Address of marks[1]: 0x222ab012464
+
+Analysis of Reference Invalidation:
+  Original memory location of reference: 0x222ab0127d4
+  Current memory location of marks[1] : 0x222ab012464
+  STATUS: MEMORY ADDRESS HAS CHANGED!
+  'highestRef' is now a DANGLING REFERENCE pointing to deallocated memory.
+  Mutating through 'highestRef' corrupts memory or causes crashes!
